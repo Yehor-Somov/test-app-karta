@@ -4,9 +4,10 @@ import { styles } from './styles';
 
 type AppBottomSheetProps = {
     children?: React.ReactNode,
+    onDismiss?: () => void,
 };
 
-const AppBottomSheet = forwardRef<BottomSheetModal, AppBottomSheetProps>(({ children }, ref) => {
+const AppBottomSheet = forwardRef<BottomSheetModal, AppBottomSheetProps>(({ children, onDismiss}, ref) => {
 
     const renderBackdrop = (props: BottomSheetBackdropProps) => (
         <BottomSheetBackdrop
@@ -24,6 +25,7 @@ const AppBottomSheet = forwardRef<BottomSheetModal, AppBottomSheetProps>(({ chil
             backdropComponent={(props) => renderBackdrop(props)}
             backgroundStyle={styles.modalStyle}
             handleIndicatorStyle={styles.handleIndicatorStyle}
+            onDismiss={onDismiss}
         >
             <BottomSheetView style={styles.contentContainer}>
                 {children}

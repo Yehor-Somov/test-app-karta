@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import React, { forwardRef, useRef } from 'react';
 import { BottomSheetModal } from '@gorhom/bottom-sheet';
 
 import { AppBottomSheet, Avatar } from '@/components';
@@ -7,15 +7,34 @@ import { View } from 'react-native';
 import { Colors } from '@/styles';
 
 import { styles } from './styles';
+import { useRouter } from 'expo-router';
 
 
 type DepositBottomSheetProps = {
 
 };
 
-const DepositBottomSheet = forwardRef<BottomSheetModal, DepositBottomSheetProps>((props, ref) => {
+const DepositBottomSheet = forwardRef<BottomSheetModal, DepositBottomSheetProps>((props, externalRef) => {
+
+    const router = useRouter();
+
+    const sheetRef = useRef<BottomSheetModal>(null);
+
+    const setRef = (node: BottomSheetModal | null) => {
+        sheetRef.current = node;
+        if (typeof externalRef === 'function') externalRef(node);
+        else if (externalRef && 'current' in externalRef) {
+            (externalRef as React.RefObject<BottomSheetModal | null>).current = node;
+        }
+    };
+
+    const goNow = (href: string) => {
+        router.push(href);
+        sheetRef.current?.dismiss();
+    };
+
     return (
-        <AppBottomSheet ref={ref}>
+        <AppBottomSheet ref={setRef}>
             <View style={styles.bottomSheetContent}>
                 <AppText style={styles.heading}
                          size={24}
@@ -24,7 +43,7 @@ const DepositBottomSheet = forwardRef<BottomSheetModal, DepositBottomSheetProps>
                     Add Money with
                 </AppText>
                 <View style={styles.actionsCardContent}>
-                    <ActionCard variant={'grey'}>
+                    <ActionCard variant={'grey'} onPress={() => goNow('/deposit')}>
                         <View style={styles.content}>
                             <Avatar icon={'qr-code'} size={40}/>
                             <View style={styles.info}>
