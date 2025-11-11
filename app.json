@@ -5,13 +5,13 @@
     "version": "1.0.0",
     "scheme": "karta-scheme",
     "orientation": "portrait",
-    "icon": "./assets/karta-icon.png",
+    "icon": "./assets/karta-icon-light.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "splash": {
-      "image": "./assets/karta-splash.png",
+      "image": "./assets/karta-splash-dark.png",
       "resizeMode": "contain",
-      "backgroundColor": "#000000"
+      "backgroundColor": "#ffffff"
     },
     "ios": {
       "supportsTablet": false,

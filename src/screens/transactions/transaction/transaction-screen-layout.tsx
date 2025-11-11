@@ -5,6 +5,7 @@ import { styles } from './styles';
 import { Avatar } from '@/components';
 import { ITransactionDto } from '@/models';
 import { formatDateTime } from '@/helpers';
+import { Colors } from '@/styles';
 
 type propsType = {
     transaction: ITransactionDto
@@ -19,22 +20,22 @@ const TransactionScreenLayout: FC<propsType> = ({ transaction }) => {
 
     return (
         <View style={styles.main}>
-            <Avatar size={64} icon={'payment'}/>
+            <Avatar size={64} icon={'payment'} backgroundColor={Colors.black} color={Colors.white}/>
 
             <View style={styles.info}>
                 <View style={styles.amount}>
-                    <AppText size={32} fontWeight={'semibold'} style={styles.white}>
+                    <AppText size={32} fontWeight={'semibold'} style={styles.black}>
                         {transactionAmount.toFixed(2)}
                     </AppText>
 
-                    <AppText size={20} fontWeight={'semibold'} style={styles.white}>
+                    <AppText size={20} fontWeight={'semibold'} style={styles.black}>
                         {transaction.currency}
                     </AppText>
                 </View>
-                <AppText size={16} fontWeight={'medium'} style={styles.white}>
+                <AppText size={16} fontWeight={'medium'} style={styles.black}>
                     {transaction.transactionName}
                 </AppText>
-                <AppText style={styles.date}>
+                <AppText style={styles.grey}>
                     {formatDateTime(transaction.date)}
                 </AppText>
             </View>
@@ -43,17 +44,17 @@ const TransactionScreenLayout: FC<propsType> = ({ transaction }) => {
                 <View style={styles.mainInfo}>
                     <View style={styles.status}>
                         <AppText size={14} fontWeight={'medium'} style={styles.grey}>Status</AppText>
-                        <AppText size={14} fontWeight={'medium'} style={styles.white}>{transaction.status}</AppText>
+                        <AppText size={14} fontWeight={'medium'} style={styles.black}>{transaction.status}</AppText>
                     </View>
 
                     <View style={styles.type}>
                         <AppText size={14} fontWeight={'medium'} style={styles.grey}>Type</AppText>
-                        <AppText size={14} fontWeight={'medium'} style={styles.white}>Virtual Card</AppText>
+                        <AppText size={14} fontWeight={'medium'} style={styles.black}>Virtual Card</AppText>
                     </View>
                 </View>
                 <View style={styles.totalChargeInfo}>
                     <AppText size={14} fontWeight={'medium'} style={styles.grey}>Total charge</AppText>
-                    <AppText size={14} fontWeight={'bold'} style={styles.white}>{`${transaction.amount} ${transaction.currency}`}</AppText>
+                    <AppText size={14} fontWeight={'bold'} style={styles.black}>{`${transaction.amount} ${transaction.currency}`}</AppText>
                 </View>
             </View>
         </View>

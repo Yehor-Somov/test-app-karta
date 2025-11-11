@@ -5,7 +5,7 @@ export const styles = StyleSheet.create({
     container: {
         padding: 16,
 
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.lightgrey,
 
         flex: 1,
         alignItems: "center",
@@ -17,7 +17,7 @@ export const styles = StyleSheet.create({
     },
     headerText: {
         fontSize: 24,
-        color: Colors.white,
+        color: Colors.black,
     },
     settingsBlocks: {
         width: '100%',
@@ -28,7 +28,7 @@ export const styles = StyleSheet.create({
         paddingBlock: 20,
         paddingInline: 16,
         borderRadius: 16,
-        backgroundColor: Colors.darkGrey,
+        backgroundColor: Colors.white,
         gap: 16,
     },
     settingItem: {
@@ -44,7 +44,7 @@ export const styles = StyleSheet.create({
     },
     settingItemNameText: {
         fontSize: 14,
-        color: Colors.white,
+        color: Colors.black,
     },
     settingItemLink: {
         flexDirection: 'row',

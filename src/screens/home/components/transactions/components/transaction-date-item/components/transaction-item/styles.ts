@@ -15,10 +15,10 @@ export const styles = StyleSheet.create({
         justifyContent: 'space-between',
     },
     transactionName: {
-        color: Colors.white,
+        color: Colors.black,
     },
     transactionAmount: {
-        color: Colors.white,
+        color: Colors.black,
     },
     transactionTime: {
         color: Colors.grey,

@@ -6,6 +6,8 @@ import { Colors } from '@/styles';
 import { Entypo } from '@expo/vector-icons';
 
 import { styles } from './styles'
+import { Icon } from 'expo-router/unstable-native-tabs';
+import { IconSymbol } from '@/ui/icon-symbol';
 
 type SettingsMainScreenLayoutProps = {}
 
@@ -21,23 +23,23 @@ const SettingsMainScreenLayout: FC<SettingsMainScreenLayoutProps> = () => {
                 <View style={styles.settingsBlock}>
                     <View style={styles.settingItem}>
                         <View style={styles.settingItemName}>
-                            <MaterialIcons name={'language'} size={16} color={Colors.white}/>
+                            <IconSymbol name={'language'} color={Colors.black} size={16}/>
                             <Text style={styles.settingItemNameText}>Language</Text>
                         </View>
                         <View style={styles.settingItemLink}>
                             <Text style={styles.settingItemLinkText}>English</Text>
-                            <Entypo name={'chevron-right'} size={16} color={Colors.white} />
+                            <IconSymbol name={'chevron-right'} color={Colors.black} size={16}/>
                         </View>
                     </View>
 
                     <View style={styles.settingItem}>
                         <View style={styles.settingItemName}>
-                            <MaterialIcons name={'language'} size={16} color={Colors.white}/>
+                            <IconSymbol name={'language'} color={Colors.black} size={16}/>
                             <Text style={styles.settingItemNameText}>Appearance</Text>
                         </View>
                         <View style={styles.settingItemLink}>
                             <Text style={styles.settingItemLinkText}>System</Text>
-                            <Entypo name={'chevron-right'} size={16} color={Colors.white} />
+                            <IconSymbol name={'chevron-right'} color={Colors.black} size={16}/>
                         </View>
                     </View>
                 </View>

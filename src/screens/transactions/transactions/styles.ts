@@ -3,7 +3,7 @@ import { Colors } from '@/styles';
 
 export const styles = StyleSheet.create({
     scrollViewMain: {
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.lightgrey,
     },
     scrollViewContent: {
         padding: 16,

@@ -55,10 +55,12 @@ const VirtualAccounts: FC<VirtualAccountsProps> = () => {
         <React.Fragment>
             <Pressable onPress={handlePresentModalPress} style={{ width: '100%' }}>
                 <View style={styles.virtualAccounts}>
-                    <Avatar firstName={'$'}/>
+                    <Avatar firstName={'$'}
+                            backgroundColor={Colors.black}
+                            color={Colors.white}
+                    />
                     <View style={styles.textInfo}>
                         <Text style={styles.titleInfo}>Virtual accounts</Text>
-                        {/*<Text style={styles.descInfo}>Not opened</Text>*/}
                     </View>
                 </View>
             </Pressable>
@@ -71,7 +73,7 @@ const VirtualAccounts: FC<VirtualAccountsProps> = () => {
                 handleIndicatorStyle={styles.handleIndicatorStyle}
             >
                 <BottomSheetView style={styles.contentContainer}>
-                    <AppText size={24} fontWeight={'medium'} style={{ color: Colors.white }}>
+                    <AppText size={24} fontWeight={'medium'} style={{ color: Colors.black }}>
                         Virtual Accounts
                     </AppText>
 
@@ -85,7 +87,7 @@ const VirtualAccounts: FC<VirtualAccountsProps> = () => {
                                             {item.value}
                                         </AppText>
 
-                                        <IconSymbol name={'content-copy'} color={Colors.white} size={14} />
+                                        <IconSymbol name={'content-copy'} color={Colors.black} size={14} />
                                     </View>
                                 </View>
                             ))

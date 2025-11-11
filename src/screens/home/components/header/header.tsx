@@ -19,8 +19,8 @@ const Header: FC = () => {
                     KARTA BALANCE (USDT)
                 </Text>
 
-                <Avatar backgroundColor={Colors.darkGrey}
-                        color={Colors.white}
+                <Avatar backgroundColor={Colors.grey}
+                        color={Colors.black}
                         icon={'message'}
                 />
             </View>

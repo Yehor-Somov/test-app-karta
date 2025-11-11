@@ -7,7 +7,7 @@ export const styles = StyleSheet.create({
         padding: 16,
         paddingTop: 32,
 
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.lightgrey,
 
         alignItems: 'center',
         gap: 24
@@ -25,13 +25,10 @@ export const styles = StyleSheet.create({
     test: {
         gap: 4
     },
-    white: {
-        color: Colors.white,
+    black: {
+        color: Colors.black,
     },
     grey: {
-        color: Colors.grey,
-    },
-    date: {
         color: Colors.grey,
     },
     operationInfo: {
@@ -43,7 +40,7 @@ export const styles = StyleSheet.create({
         padding: 16,
         borderRadius: 16,
 
-        backgroundColor: Colors.darkGrey,
+        backgroundColor: Colors.white,
 
         gap: 8
     },
@@ -59,7 +56,7 @@ export const styles = StyleSheet.create({
         padding: 16,
         borderRadius: 16,
 
-        backgroundColor: Colors.darkGrey,
+        backgroundColor: Colors.white,
 
         flexDirection: 'row',
         justifyContent: 'space-between',

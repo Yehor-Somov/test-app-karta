@@ -25,10 +25,11 @@ const BaseButton: FC<BaseButtonProps> = ({
             ]}>
                 {
                     !!icon &&
-                    <IconSymbol name={icon} color={Colors.black}/>
+                    <IconSymbol name={icon} color={Colors.green}/>
                 }
 
                 <Text style={[
+                    styles.buttonText,
                     size === 'small' ? styles.textSmall : undefined,
                     size === 'medium' ? styles.textMedium : undefined,
                 ]}>
@@ -41,7 +42,7 @@ const BaseButton: FC<BaseButtonProps> = ({
 
 const styles = StyleSheet.create({
     main: {
-        backgroundColor: Colors.green,
+        backgroundColor: Colors.black,
 
         flexDirection: 'row',
         justifyContent: 'center',
@@ -56,7 +57,9 @@ const styles = StyleSheet.create({
         padding: 20,
         borderRadius: 16,
     },
-
+    buttonText: {
+        color: Colors.green,
+    },
     textSmall: {
         fontSize: 14,
         fontWeight: 'medium',

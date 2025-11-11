@@ -11,21 +11,21 @@ export default function RootLayout() {
         <GestureHandlerRootView style={{ flex: 1 }}>
             <BottomSheetModalProvider>
                 <React.Fragment>
-                    <StatusBar style={'light'}/>
+                    <StatusBar style={'dark'}/>
                     <Stack
                         screenOptions={{
                             headerBackTitle: 'Back',
                             headerStyle: {
-                                backgroundColor: Colors.black,
+                                backgroundColor: Colors.lightgrey,
                             },
-                            headerTintColor: Colors.white,
+                            headerTintColor: Colors.black,
                         }}
                     >
                         <Stack.Screen name={'(home)/index'} options={{
                             title: 'Karta.io',
                             headerTitleAlign: 'center',
                             headerTitleStyle: {
-                                color: Colors.white,
+                                color: Colors.black,
                             }
                         }}/>
 
@@ -41,7 +41,7 @@ export default function RootLayout() {
                             presentation: 'modal',
                             title: 'Transaction',
                             headerStyle: {
-                                backgroundColor: Colors.darkGrey,
+                                backgroundColor: Colors.grey,
                             },
                         }}/>
                     </Stack>

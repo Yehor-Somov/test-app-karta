@@ -10,7 +10,7 @@ export const styles = StyleSheet.create({
     },
     heading: {
         alignSelf: 'flex-start',
-        color: Colors.white,
+        color: Colors.black,
     },
     viewAllButton: {
         width: 'auto',

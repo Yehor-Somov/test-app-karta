@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
         paddingBlock: 20,
         borderRadius: 16,
 
-        backgroundColor: Colors.darkGrey,
+        backgroundColor: Colors.white,
 
         flexDirection: 'row',
         justifyContent: 'flex-start',
@@ -18,7 +18,7 @@ export const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     titleInfo: {
-        color: Colors.white,
+        color: Colors.black,
         fontSize: 14,
         fontWeight: 'bold',
     },
@@ -29,10 +29,10 @@ export const styles = StyleSheet.create({
 
 
     modalStyle: {
-        backgroundColor: Colors.darkGrey,
+        backgroundColor: Colors.white,
     },
     handleIndicatorStyle: {
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.black,
     },
     contentContainer: {
         flex: 1,
@@ -47,7 +47,7 @@ export const styles = StyleSheet.create({
         width: '100%',
         padding: 16,
         borderRadius: 16,
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.lightgrey,
         gap: 16,
     },
 
@@ -62,7 +62,7 @@ export const styles = StyleSheet.create({
         justifyContent: 'space-between',
     },
     itemValueText: {
-        color: Colors.white,
+        color: Colors.black,
     },
     buttons: {
         width: '100%',

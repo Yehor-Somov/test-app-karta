@@ -6,6 +6,7 @@ import { AppText } from '@/ui';
 import { styles } from './styles';
 import { getLocalTime } from '@/helpers';
 import { useRouter } from 'expo-router';
+import { Colors } from '@/styles';
 
 type TransactionItemProps = {
     transaction: ITransactionDto,
@@ -27,6 +28,8 @@ const TransactionItem: FC<TransactionItemProps> = ({ transaction }) => {
             <View style={styles.transactionItem}>
                 <Avatar size={40}
                         icon={'payment'}
+                        backgroundColor={Colors.black}
+                        color={Colors.white}
                 />
                 <View style={styles.transactionInfo}>
                     <View style={styles.amountInfo}>
