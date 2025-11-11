@@ -6,7 +6,7 @@ export const styles = StyleSheet.create({
         backgroundColor: Colors.white,
     },
     handleIndicatorStyle: {
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.lightgrey,
     },
     contentContainer: {
         padding: 16,

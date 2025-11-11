@@ -1,12 +1,9 @@
 import { FC } from 'react';
 import { Text, View } from 'react-native';
 import { Avatar } from '@/components';
-import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import { Colors } from '@/styles';
-import { Entypo } from '@expo/vector-icons';
 
 import { styles } from './styles'
-import { Icon } from 'expo-router/unstable-native-tabs';
 import { IconSymbol } from '@/ui/icon-symbol';
 
 type SettingsMainScreenLayoutProps = {}
