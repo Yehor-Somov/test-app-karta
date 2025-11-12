@@ -1,8 +1,7 @@
-import { HomeScreenLayout } from '@/screens';
-import { Text } from 'react-native';
+import { DepositScreenLayout } from '@/screens/wallet';
 
 export default function DepositScreen() {
     return (
-        <Text>Deposit</Text>
+        <DepositScreenLayout/>
     );
 }

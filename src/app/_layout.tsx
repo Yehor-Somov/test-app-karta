@@ -44,6 +44,10 @@ export default function RootLayout() {
                                 backgroundColor: Colors.grey,
                             },
                         }}/>
+
+                        <Stack.Screen name={'(wallet-transactions)/deposit'} options={{
+                            title: 'Deposit',
+                        }}/>
                     </Stack>
                 </React.Fragment>
             </BottomSheetModalProvider>

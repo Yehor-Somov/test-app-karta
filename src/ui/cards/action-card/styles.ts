@@ -6,6 +6,7 @@ export const styles = StyleSheet.create({
         borderRadius: 16
     },
     container: {
+        width: '100%',
         borderRadius: 16,
         padding: 16
     },
