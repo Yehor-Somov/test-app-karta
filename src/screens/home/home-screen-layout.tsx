@@ -5,15 +5,20 @@ import { styles } from './styles';
 import { Header } from './components';
 import { VirtualAccounts, Transactions } from '@/screens/home/components';
 import { BottomSheetModal } from '@gorhom/bottom-sheet';
-import { DepositBottomSheet } from '@/modules';
+import { DepositBottomSheet, WithdrawBottomSheet } from '@/modules';
 
 type HomeProps = {}
 
 const HomeScreenLayout: FC<HomeProps> = () => {
 
-    const bottomSheetModalRef = useRef<BottomSheetModal>(null);
-    const handlePresentModalPress = useCallback(() => {
-        bottomSheetModalRef.current?.present();
+    const depositBottomSheetModalRef = useRef<BottomSheetModal>(null);
+    const handlePresentDepositModalPress = useCallback(() => {
+        depositBottomSheetModalRef.current?.present();
+    }, []);
+
+    const withdrawBottomSheetModalRef = useRef<BottomSheetModal>(null);
+    const handlePresentWithdrawModalPress = useCallback(() => {
+        withdrawBottomSheetModalRef.current?.present();
     }, []);
 
     return (
@@ -23,19 +28,21 @@ const HomeScreenLayout: FC<HomeProps> = () => {
                 <BaseButton text={'Top up'}
                             icon={'add'}
                             style={styles.button}
-                            onPress={handlePresentModalPress}
+                            onPress={handlePresentDepositModalPress}
                 />
 
                 <BaseButton text={'Send'}
                             icon={'arrow-upward'}
                             style={styles.button}
+                            onPress={handlePresentWithdrawModalPress}
                 />
             </View>
 
             <VirtualAccounts/>
             <Transactions/>
 
-            <DepositBottomSheet ref={bottomSheetModalRef}/>
+            <DepositBottomSheet ref={depositBottomSheetModalRef}/>
+            <WithdrawBottomSheet ref={withdrawBottomSheetModalRef}/>
         </View>
     );
 };

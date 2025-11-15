@@ -48,6 +48,10 @@ export default function RootLayout() {
                         <Stack.Screen name={'(wallet-transactions)/deposit'} options={{
                             title: 'Deposit',
                         }}/>
+
+                        <Stack.Screen name={'(wallet-transactions)/withdraw'} options={{
+                            title: 'Withdraw',
+                        }}/>
                     </Stack>
                 </React.Fragment>
             </BottomSheetModalProvider>
