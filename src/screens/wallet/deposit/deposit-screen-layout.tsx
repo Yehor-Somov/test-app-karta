@@ -1,14 +1,29 @@
-import { FC } from 'react';
+import { FC, useCallback, useRef, useState } from 'react';
 import { ScrollView, View } from 'react-native';
 import { QrCodeModule } from '@/modules';
 import { styles } from './styles'
 import { ActionCard, AppText, IconSymbol } from '@/ui';
 import { Colors } from '@/styles';
-import { BaseButton } from '@/components';
+import { AppBottomSheet, BaseButton } from '@/components';
+import { BottomSheetModal } from '@gorhom/bottom-sheet';
+import { WALLET, NETWORKS } from '@/mocks';
+import { NetworkEnum } from '@/enums';
+import { formatAddress, getQrValue } from './helpers';
 
 type DepositScreenLayoutProps = {}
 
 const DepositScreenLayout: FC<DepositScreenLayoutProps> = () => {
+
+    const [network, setNetwork] = useState<NetworkEnum>(WALLET.defaultNetworkId);
+
+    const bottomSheetModalRef = useRef<BottomSheetModal>(null);
+
+    const handlePresentModalPress = useCallback(() => {
+        bottomSheetModalRef.current?.present();
+    }, []);
+
+    const qrValue = getQrValue(network, WALLET);
+
     return (
         <View style={styles.main}>
             <ScrollView style={{ flex: 1 }}>
@@ -17,9 +32,9 @@ const DepositScreenLayout: FC<DepositScreenLayoutProps> = () => {
                         <AppText size={24} fontWeight={'medium'}>Your Address</AppText>
 
                         <View style={styles.qrCode}>
-                            <QrCodeModule value={'0x3B2acC130d33c7090f7999138b9045aE23869E94'}
+                            <QrCodeModule value={qrValue}
                                           size={200}/>
-                            <AppText size={14} fontWeight={'medium'}>0x3B2a...869E94</AppText>
+                            <AppText size={14} fontWeight={'medium'}>{formatAddress(qrValue)}</AppText>
                         </View>
                     </View>
 
@@ -30,10 +45,15 @@ const DepositScreenLayout: FC<DepositScreenLayoutProps> = () => {
                                 <AppText size={16} fontWeight={'semibold'}>USDT or USDC</AppText>
                             </View>
                         </ActionCard>
-                        <ActionCard>
+                        <ActionCard onPress={handlePresentModalPress}>
                             <View style={styles.cardInfo}>
                                 <AppText size={14} style={styles.cardOption}>Network</AppText>
-                                <AppText size={16} fontWeight={'semibold'}>Arbitrium One</AppText>
+                                <AppText size={16} fontWeight={'semibold'}>
+                                    {
+                                        NETWORKS.find(searchableNetwork =>
+                                            searchableNetwork.id === network)?.name || 'undefined'
+                                    }
+                                </AppText>
                             </View>
                         </ActionCard>
                         <ActionCard>
@@ -63,6 +83,34 @@ const DepositScreenLayout: FC<DepositScreenLayoutProps> = () => {
                 <BaseButton text={'Copy'} style={styles.button} icon={'content-copy'}/>
                 <BaseButton text={'Share'} style={styles.button} icon={'share'}/>
             </View>
+
+            <AppBottomSheet ref={bottomSheetModalRef}>
+                <View style={styles.bottomSheetContent}>
+                    {
+                        NETWORKS.map((mappedNetwork, index) => (
+                            <ActionCard key={`network-${mappedNetwork}-${index}`}
+                                        variant={'grey'}
+                                        contentStyle={styles.selectorItem}
+                                        onPress={() => {
+                                            setNetwork(mappedNetwork.id);
+                                            bottomSheetModalRef.current?.dismiss();
+                                        }}
+                            >
+                                <View style={styles.selectorItemInfo}>
+                                    <IconSymbol name={'currency-bitcoin'} color={Colors.black} size={24}/>
+                                    <AppText size={16} fontWeight={'medium'}>{mappedNetwork.name}</AppText>
+                                </View>
+
+                                {
+                                    mappedNetwork.id === network &&
+                                    <IconSymbol name={'done'} color={Colors.black}/>
+                                }
+                            </ActionCard>
+                        ))
+                    }
+                </View>
+
+            </AppBottomSheet>
         </View>
     );
 };

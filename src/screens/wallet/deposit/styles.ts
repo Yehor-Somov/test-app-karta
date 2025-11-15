@@ -60,5 +60,20 @@ export const styles = StyleSheet.create({
     button: {
         flexBasis: 0,
         flexGrow: 1,
+    },
+
+    bottomSheetContent: {
+        gap: 8,
+    },
+    selectorItem: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        gap: 12,
+    },
+    selectorItemInfo: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 12,
     }
 });
