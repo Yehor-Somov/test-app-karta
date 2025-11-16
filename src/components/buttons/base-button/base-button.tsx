@@ -42,7 +42,7 @@ const BaseButton: FC<BaseButtonProps> = ({
 
 const styles = StyleSheet.create({
     main: {
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.darkGrey,
 
         flexDirection: 'row',
         justifyContent: 'center',

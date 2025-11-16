@@ -1,20 +1,21 @@
 import { StyleSheet } from 'react-native';
+import { Colors } from '@/styles';
 
 export const styles = StyleSheet.create({
     wrapper: {
         width: '100%',
-        gap: 6
+        gap: 8
     },
     label: {
-        fontSize: 14,
-        color: "#666"
+        fontSize: 12,
+        color: Colors.darkGrey,
+        marginLeft: 16,
     },
     field: {
+        backgroundColor: Colors.white,
         minHeight: 48,
-        borderWidth: 1,
-        borderColor: "#ddd",
-        borderRadius: 12,
-        paddingHorizontal: 12,
+        borderRadius: 8,
+        paddingHorizontal: 16,
         flexDirection: "row",
         alignItems: "center",
     },

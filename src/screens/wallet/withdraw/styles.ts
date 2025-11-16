@@ -16,7 +16,7 @@ export const styles = StyleSheet.create({
     },
     address: {
         alignItems: 'center',
-        gap: 36,
+        gap: 24,
     },
     qrCode: {
         backgroundColor: Colors.white,

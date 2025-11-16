@@ -2,7 +2,7 @@ import { FC, useCallback, useRef, } from 'react';
 import { View } from 'react-native';
 import { BaseButton } from '@/components';
 import { styles } from './styles';
-import { Header } from './components';
+import { Header, Invitations } from './components';
 import { VirtualAccounts, Transactions } from '@/screens/home/components';
 import { BottomSheetModal } from '@gorhom/bottom-sheet';
 import { DepositBottomSheet, WithdrawBottomSheet } from '@/modules';
@@ -39,6 +39,7 @@ const HomeScreenLayout: FC<HomeProps> = () => {
             </View>
 
             <VirtualAccounts/>
+            <Invitations/>
             <Transactions/>
 
             <DepositBottomSheet ref={depositBottomSheetModalRef}/>

@@ -41,18 +41,27 @@ const BaseInput = forwardRef<BaseInputHandle, BaseInputProps>(
 
         return (
             <View style={styles.wrapper}>
-                {label ? <Text style={styles.label}>{label}</Text> : null}
+                {
+                    label ?
+                        <Text style={styles.label}>{label}</Text> :
+                        null
+                }
 
                 <View style={[
                     styles.field,
                     !!errorText && { borderColor: "#f43f5e" },
                 ]}>
-                    {left ? <View style={styles.adornLeft}>{left}</View> : null}
+                    {
+                        left ?
+                            <View style={styles.adornLeft}>{left}</View>
+                            : null
+                    }
 
                     <TextInput
                         ref={innerRef}
                         style={[styles.input, style]}
                         secureTextEntry={hidden}
+                        placeholder={'USDT address'}
                         placeholderTextColor="#999"
                         {...rest}
                     />

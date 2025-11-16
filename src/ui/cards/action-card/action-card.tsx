@@ -2,7 +2,7 @@ import React, { FC, PropsWithChildren } from 'react';
 import { Pressable, View, ViewStyle } from 'react-native';
 import { styles } from './styles';
 
-type Variant = 'white' | 'black' | 'grey';
+type Variant = 'white' | 'black' | 'grey' | 'darkGrey';
 
 type ActionCardProps = PropsWithChildren<{
     onPress?: () => void,

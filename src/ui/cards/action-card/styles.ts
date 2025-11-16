@@ -16,4 +16,5 @@ export const styles = StyleSheet.create({
     white: { backgroundColor: Colors.white},
     black: { backgroundColor: Colors.black },
     grey: { backgroundColor: Colors.lightgrey },
+    darkGrey: { backgroundColor: Colors.darkGrey },
 });
