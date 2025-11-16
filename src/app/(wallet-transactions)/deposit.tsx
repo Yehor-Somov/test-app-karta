@@ -1,4 +1,4 @@
-import { WithdrawScreenLayout } from '@/screens/wallet';
+import { DepositScreenLayout } from '@/screens/wallet';
 
 export default function DepositScreen() {
     return (

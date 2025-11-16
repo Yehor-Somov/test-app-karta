@@ -4,13 +4,21 @@ import { styles } from './styles';
 import { Avatar } from '@/components';
 import { View } from 'react-native';
 import { Colors } from '@/styles';
+import { useRouter } from 'expo-router';
 
 
 type InvitationsProps = {}
 
 const Invitations: FC<InvitationsProps> = () => {
+
+    const router = useRouter();
+
     return (
-        <ActionCard variant={'darkGrey'} style={styles.invitationsCard} contentStyle={styles.invitationsCardContent}>
+        <ActionCard variant={'darkGrey'}
+                    style={styles.invitationsCard}
+                    contentStyle={styles.invitationsCardContent}
+                    onPress={() => router.push('/invitations')}
+        >
             <Avatar icon={'diamond'} backgroundColor={Colors.green}/>
             <View style={styles.content}>
                 <View style={styles.mainInfo}>

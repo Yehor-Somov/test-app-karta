@@ -33,6 +33,13 @@ export default function RootLayout() {
                             title: 'Profile'
                         }}/>
 
+                        <Stack.Screen name={'(invitations)/invitations'} options={{
+                            title: 'Invite friends',
+                            contentStyle: {
+                                backgroundColor: Colors.white,
+                            }
+                        }}/>
+
                         <Stack.Screen name={'transactions/index'} options={{
                             title: 'All Transactions'
                         }}/>
