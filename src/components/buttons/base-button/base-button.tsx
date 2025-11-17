@@ -8,28 +8,30 @@ type BaseButtonProps = {
     text: string,
     size?: 'small' | 'medium' | 'large',
     icon?: ComponentProps<typeof MaterialIcons>['name'],
+    transparent?: boolean,
 } & PressableProps
 
 const BaseButton: FC<BaseButtonProps> = ({
                                              text,
                                              size = 'medium',
                                              icon,
+                                             transparent,
                                              ...props
                                          }) => {
     return (
         <Pressable {...props}>
             <View style={[
-                styles.main,
+                transparent ? styles.mainTransparent : styles.main,
                 size === 'small' ? styles.small : undefined,
                 size === 'medium' ? styles.medium : undefined,
             ]}>
                 {
                     !!icon &&
-                    <IconSymbol name={icon} color={Colors.green}/>
+                    <IconSymbol name={icon} color={transparent? Colors.black : Colors.green}/>
                 }
 
                 <Text style={[
-                    styles.buttonText,
+                    transparent ? styles.transparentButtonText : styles.buttonText,
                     size === 'small' ? styles.textSmall : undefined,
                     size === 'medium' ? styles.textMedium : undefined,
                 ]}>
@@ -49,6 +51,17 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         gap: 8
     },
+    mainTransparent: {
+        backgroundColor: 'transparent',
+        borderWidth: 1,
+        borderColor: Colors.grey,
+
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        gap: 8
+    },
+
     small: {
         padding: 12,
         borderRadius: 10,
@@ -56,6 +69,9 @@ const styles = StyleSheet.create({
     medium: {
         padding: 20,
         borderRadius: 16,
+    },
+    transparentButtonText: {
+        color: Colors.black,
     },
     buttonText: {
         color: Colors.green,
