@@ -38,6 +38,11 @@ export const styles = StyleSheet.create({
     cardOption: {
         color: Colors.grey,
     },
+    cardValueView: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 8,
+    },
     alertInfo: {
         flexDirection: 'row',
         gap: 16,

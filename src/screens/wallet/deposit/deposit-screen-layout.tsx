@@ -1,5 +1,5 @@
 import { FC, useCallback, useRef, useState } from 'react';
-import { ScrollView, View } from 'react-native';
+import { Alert, ScrollView, Share, View } from 'react-native';
 import { QrCodeModule } from '@/modules';
 import { styles } from './styles'
 import { ActionCard, AppText, IconSymbol } from '@/ui';
@@ -9,10 +9,20 @@ import { BottomSheetModal } from '@gorhom/bottom-sheet';
 import { WALLET, NETWORKS } from '@/mocks';
 import { NetworkEnum } from '@/enums';
 import { formatAddress, getQrValue } from './helpers';
+import * as Clipboard from 'expo-clipboard';
 
-type DepositScreenLayoutProps = {}
+export async function shareText(message: string) {
+    try {
+        const res = await Share.share({ message });
+        if (res.action === Share.sharedAction) return true;
+        if (res.action === Share.dismissedAction) return false;
+    } catch (e) {
+        console.warn('Share error:', e);
+        return false;
+    }
+}
 
-const DepositScreenLayout: FC<DepositScreenLayoutProps> = () => {
+const DepositScreenLayout: FC = () => {
 
     const [network, setNetwork] = useState<NetworkEnum>(WALLET.defaultNetworkId);
 
@@ -21,6 +31,11 @@ const DepositScreenLayout: FC<DepositScreenLayoutProps> = () => {
     const handlePresentModalPress = useCallback(() => {
         bottomSheetModalRef.current?.present();
     }, []);
+
+    const onCopy = async (data: string) => {
+        await Clipboard.setStringAsync(data);
+        Alert.alert('Copy to clipboard');
+    };
 
     const qrValue = getQrValue(network, WALLET);
 
@@ -48,12 +63,16 @@ const DepositScreenLayout: FC<DepositScreenLayoutProps> = () => {
                         <ActionCard onPress={handlePresentModalPress}>
                             <View style={styles.cardInfo}>
                                 <AppText size={14} style={styles.cardOption}>Network</AppText>
-                                <AppText size={16} fontWeight={'semibold'}>
-                                    {
-                                        NETWORKS.find(searchableNetwork =>
-                                            searchableNetwork.id === network)?.name || 'undefined'
-                                    }
-                                </AppText>
+                                <View style={styles.cardValueView}>
+                                    <AppText size={16} fontWeight={'semibold'}>
+                                        {
+                                            NETWORKS.find(searchableNetwork =>
+                                                searchableNetwork.id === network)?.name || 'undefined'
+                                        }
+                                    </AppText>
+                                    <IconSymbol name={'chevron-right'} color={Colors.grey}/>
+                                </View>
+
                             </View>
                         </ActionCard>
                         <ActionCard>
@@ -80,8 +99,8 @@ const DepositScreenLayout: FC<DepositScreenLayoutProps> = () => {
             </ScrollView>
 
             <View style={styles.buttons}>
-                <BaseButton text={'Copy'} style={styles.button} icon={'content-copy'}/>
-                <BaseButton text={'Share'} style={styles.button} icon={'share'}/>
+                <BaseButton text={'Copy'} style={styles.button} icon={'content-copy'} transparent={true} onPress={() => onCopy(qrValue)}/>
+                <BaseButton text={'Share'} style={styles.button} icon={'share'} onPress={() => shareText(qrValue)}/>
             </View>
 
             <AppBottomSheet ref={bottomSheetModalRef}>

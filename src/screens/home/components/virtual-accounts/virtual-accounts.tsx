@@ -1,6 +1,7 @@
+import * as Clipboard from 'expo-clipboard';
 import { FC, useCallback, useRef } from 'react';
 import { styles } from './styles'
-import { Pressable, View, Text } from 'react-native';
+import { Pressable, View, Text, Alert } from 'react-native';
 import { Avatar, BaseButton } from '@/components';
 import { BottomSheetBackdrop, BottomSheetBackdropProps, BottomSheetModal, BottomSheetView } from '@gorhom/bottom-sheet';
 import React from 'react';
@@ -31,7 +32,7 @@ const data = [
         heading: 'Bank Address',
         value: '1801 Main St., Kansas City, MO 64108',
     }
-]
+];
 
 const VirtualAccounts: FC<VirtualAccountsProps> = () => {
 
@@ -40,6 +41,11 @@ const VirtualAccounts: FC<VirtualAccountsProps> = () => {
     const handlePresentModalPress = useCallback(() => {
         bottomSheetModalRef.current?.present();
     }, []);
+
+    const onCopy = async (data: string) => {
+        await Clipboard.setStringAsync(data);
+        Alert.alert('Copy to clipboard');
+    };
 
     const renderBackdrop = (props: BottomSheetBackdropProps) => (
         <BottomSheetBackdrop
@@ -87,7 +93,9 @@ const VirtualAccounts: FC<VirtualAccountsProps> = () => {
                                             {item.value}
                                         </AppText>
 
-                                        <IconSymbol name={'content-copy'} color={Colors.black} size={14} />
+                                        <Pressable onPress={() => onCopy(item.value)}>
+                                            <IconSymbol name={'content-copy'} color={Colors.black} size={14} />
+                                        </Pressable>
                                     </View>
                                 </View>
                             ))
@@ -95,7 +103,7 @@ const VirtualAccounts: FC<VirtualAccountsProps> = () => {
                     </View>
 
                     <View style={styles.buttons}>
-                        <BaseButton size={'small'} text={'Top up Details'} icon={'info-outline'} style={styles.button}/>
+                        <BaseButton size={'small'} text={'Top up Details'} icon={'info-outline'} style={styles.button} transparent={true}/>
                         <BaseButton size={'small'} text={'Share'} icon={'share'} style={styles.button}/>
                     </View>
                 </BottomSheetView>
