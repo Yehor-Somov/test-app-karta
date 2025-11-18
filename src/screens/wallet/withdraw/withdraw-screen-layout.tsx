@@ -1,147 +1,88 @@
-import { FC, useCallback, useRef, useState } from 'react';
-import { ScrollView, TextInput, View, Text } from 'react-native';
-import { QrCodeModule } from '@/modules';
+import { FC, useRef, useState } from 'react';
+import { Alert, Pressable, ScrollView, View } from 'react-native';
 import { styles } from './styles'
-import { ActionCard, AppText, IconSymbol } from '@/ui';
+import { AppText, IconSymbol } from '@/ui';
 import { Colors } from '@/styles';
-import { AppBottomSheet, BaseButton, BaseInput } from '@/components';
+import { BaseButton, BaseInput } from '@/components';
 import { BottomSheetModal } from '@gorhom/bottom-sheet';
-import { WALLET, NETWORKS } from '@/mocks';
-import { NetworkEnum } from '@/enums';
-import { formatAddress, getQrValue } from './helpers';
+import { NetworkBottomSheet, TokenBottomSheet } from '@/screens/wallet/withdraw/components';
+import { NETWORKS } from '@/mocks';
 
 type DepositScreenLayoutProps = {}
 
 const WithdrawScreenLayout: FC<DepositScreenLayoutProps> = () => {
 
-    const [network, setNetwork] = useState<NetworkEnum>(WALLET.defaultNetworkId);
 
-    const bottomSheetModalRef = useRef<BottomSheetModal>(null);
+    const tokenBottomSheetModalRef = useRef<BottomSheetModal>(null);
+    const networkBottomSheetModalRef = useRef<BottomSheetModal>(null);
 
-    const handlePresentModalPress = useCallback(() => {
-        bottomSheetModalRef.current?.present();
-    }, []);
-
-    const [email, setEmail] = useState("");
-
-    const qrValue = getQrValue(network, WALLET);
+    const [token, setToken] = useState<string>('USDT')
+    const [network, setNetwork] = useState<string>(NETWORKS[0].name);
+    const [address, setAddress] = useState("");
+    const [amount, setAmount] = useState("");
 
     return (
         <View style={styles.main}>
-            <ScrollView style={{ flex: 1 }}>
+            <ScrollView contentContainerStyle={{ flex: 1, height: '100%'}}>
                 <View style={styles.mainScrollable}>
-                    <View style={styles.address}>
+                    <View style={styles.container}>
                         <AppText size={24} fontWeight={'medium'}>Send Crypto</AppText>
 
-                        <BaseInput label={"TOKEN"}
-                                   value={email}
-                                   onChangeText={setEmail}
-                                   keyboardType={"email-address"}
-                                   right={<IconSymbol name={'qr-code-scanner'} size={18} color={Colors.black}/>}
-                        />
+                        <View style={styles.select}>
+                            <AppText size={12} style={styles.selectLabel}>TOKEN</AppText>
+                            <Pressable onPress={() => tokenBottomSheetModalRef.current?.present()}>
+                                <View style={styles.selectValue}>
+                                    <AppText size={16} fontWeight={'semibold'}>{token}</AppText>
+                                    <IconSymbol name={'chevron-right'} color={Colors.darkGrey}/>
+                                </View>
+                            </Pressable>
+                        </View>
 
                         <BaseInput label={"ADDRESS"}
-                                   value={email}
-                                   onChangeText={setEmail}
-                                   keyboardType={"email-address"}
+                                   value={address}
+                                   onChangeText={setAddress}
+                                   placeholder={'USDT address'}
                                    right={<IconSymbol name={'qr-code-scanner'} size={18} color={Colors.black}/>}
                         />
 
-                        <BaseInput label={"NETWORK"}
-                                   value={email}
-                                   onChangeText={setEmail}
-                                   keyboardType={"email-address"}
-                                   right={<IconSymbol name={'qr-code-scanner'} size={18} color={Colors.black}/>}
-                        />
+                        <View style={styles.select}>
+                            <AppText size={12} style={styles.selectLabel}>NETWORK</AppText>
+                            <Pressable onPress={() => networkBottomSheetModalRef.current?.present()}>
+                                <View style={styles.selectValue}>
+                                    <AppText size={16} fontWeight={'semibold'}>{network}</AppText>
+                                    <IconSymbol name={'chevron-right'} color={Colors.darkGrey}/>
+                                </View>
+                            </Pressable>
+                        </View>
 
                         <BaseInput label={"AMOUNT"}
-                                   value={email}
-                                   onChangeText={setEmail}
-                                   keyboardType={"email-address"}
-                                   right={<IconSymbol name={'qr-code-scanner'} size={18} color={Colors.black}/>}
+                                   value={amount}
+                                   onChangeText={setAmount}
+                                   placeholder={'Enter amount'}
+                                   keyboardType={"numeric"}
                         />
-
-
-                        {/*<View style={styles.qrCode}>*/}
-                        {/*    <QrCodeModule value={qrValue}*/}
-                        {/*                  size={200}/>*/}
-                        {/*    <AppText size={14} fontWeight={'medium'}>{formatAddress(qrValue)}</AppText>*/}
-                        {/*</View>*/}
                     </View>
 
-                {/*    <View style={styles.operationInfo}>*/}
-                {/*        <ActionCard>*/}
-                {/*            <View style={styles.cardInfo}>*/}
-                {/*                <AppText size={14} style={styles.cardOption}>Receive token</AppText>*/}
-                {/*                <AppText size={16} fontWeight={'semibold'}>USDT or USDC</AppText>*/}
-                {/*            </View>*/}
-                {/*        </ActionCard>*/}
-                {/*        <ActionCard onPress={handlePresentModalPress}>*/}
-                {/*            <View style={styles.cardInfo}>*/}
-                {/*                <AppText size={14} style={styles.cardOption}>Network</AppText>*/}
-                {/*                <AppText size={16} fontWeight={'semibold'}>*/}
-                {/*                    {*/}
-                {/*                        NETWORKS.find(searchableNetwork =>*/}
-                {/*                            searchableNetwork.id === network)?.name || 'undefined'*/}
-                {/*                    }*/}
-                {/*                </AppText>*/}
-                {/*            </View>*/}
-                {/*        </ActionCard>*/}
-                {/*        <ActionCard>*/}
-                {/*            <View style={styles.fewInfos}>*/}
-                {/*                <View style={styles.cardInfo}>*/}
-                {/*                    <AppText size={14} style={styles.cardOption}>Top up fee</AppText>*/}
-                {/*                    <AppText size={16} fontWeight={'semibold'}>Free</AppText>*/}
-                {/*                </View>*/}
-                {/*                <View style={styles.cardInfo}>*/}
-                {/*                    <AppText size={14} style={styles.cardOption}>Minimum amount</AppText>*/}
-                {/*                    <AppText size={16} fontWeight={'semibold'}>1.00 USDT</AppText>*/}
-                {/*                </View>*/}
-                {/*            </View>*/}
-
-                {/*        </ActionCard>*/}
-                {/*        <ActionCard>*/}
-                {/*            <View style={styles.alertInfo}>*/}
-                {/*                <IconSymbol size={16} name={'message'} color={Colors.darkGrey}/>*/}
-                {/*                <AppText size={14} style={styles.alertText}>Use this address only for USDT or USDC deposit to avoid losing funds</AppText>*/}
-                {/*            </View>*/}
-                {/*        </ActionCard>*/}
-                {/*    </View>*/}
+                    <BaseButton text={'Continue'} size={'small'} onPress={() => {
+                        Alert.alert('Transaction Info', `TOKEN: ${token}\nADDRESS: ${address}\nNETWORK: ${network}\nAMOUNT: ${amount}`);
+                    }}/>
                 </View>
             </ScrollView>
 
-            {/*<View style={styles.buttons}>*/}
-            {/*    <BaseButton text={'Copy'} style={styles.button} icon={'content-copy'}/>*/}
-            {/*    <BaseButton text={'Share'} style={styles.button} icon={'share'}/>*/}
-            {/*</View>*/}
+            <TokenBottomSheet ref={tokenBottomSheetModalRef}
+                              value={token}
+                              setValue={(newValue) => {
+                                  setToken(newValue);
+                                  tokenBottomSheetModalRef.current?.dismiss();
+                              }}
+            />
 
-            {/*<AppBottomSheet ref={bottomSheetModalRef}>*/}
-            {/*    <View style={styles.bottomSheetContent}>*/}
-            {/*        {*/}
-            {/*            NETWORKS.map((mappedNetwork, index) => (*/}
-            {/*                <ActionCard key={`network-${mappedNetwork}-${index}`}*/}
-            {/*                            variant={'grey'}*/}
-            {/*                            contentStyle={styles.selectorItem}*/}
-            {/*                            onPress={() => {*/}
-            {/*                                setNetwork(mappedNetwork.id);*/}
-            {/*                                bottomSheetModalRef.current?.dismiss();*/}
-            {/*                            }}*/}
-            {/*                >*/}
-            {/*                    <View style={styles.selectorItemInfo}>*/}
-            {/*                        <IconSymbol name={'currency-bitcoin'} color={Colors.black} size={24}/>*/}
-            {/*                        <AppText size={16} fontWeight={'medium'}>{mappedNetwork.name}</AppText>*/}
-            {/*                    </View>*/}
-
-            {/*                    {*/}
-            {/*                        mappedNetwork.id === network &&*/}
-            {/*                        <IconSymbol name={'done'} color={Colors.black}/>*/}
-            {/*                    }*/}
-            {/*                </ActionCard>*/}
-            {/*            ))*/}
-            {/*        }*/}
-            {/*    </View>*/}
-
-            {/*</AppBottomSheet>*/}
+            <NetworkBottomSheet ref={networkBottomSheetModalRef}
+                                value={network}
+                                setValue={(newNetworkValue) => {
+                                    setNetwork(newNetworkValue);
+                                    networkBottomSheetModalRef.current?.dismiss();
+                                }}/>
         </View>
     );
 };

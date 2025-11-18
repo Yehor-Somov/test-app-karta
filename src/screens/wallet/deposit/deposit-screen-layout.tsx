@@ -128,7 +128,6 @@ const DepositScreenLayout: FC = () => {
                         ))
                     }
                 </View>
-
             </AppBottomSheet>
         </View>
     );

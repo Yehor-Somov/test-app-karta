@@ -7,73 +7,32 @@ export const styles = StyleSheet.create({
         backgroundColor: Colors.lightgrey,
     },
     mainScrollable: {
-        height: 'auto',
-        flex: 1,
-        flexDirection: 'column',
+        height: '100%',
         paddingTop: 32,
         padding: 16,
         gap: 24,
     },
-    address: {
+    container: {
+        flexGrow: 1,
         alignItems: 'center',
         gap: 24,
     },
-    qrCode: {
-        backgroundColor: Colors.white,
-        padding: 18,
-        borderRadius: 16,
-        alignItems: 'center',
-        gap: 16
+    select: {
+        alignSelf: 'stretch',
+        gap: 8,
     },
-    operationInfo: {
-        gap: 8
-    },
-    fewInfos: {
-        gap: 12,
-    },
-    cardInfo: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-    },
-    cardOption: {
-        color: Colors.grey,
-    },
-    alertInfo: {
-        flexDirection: 'row',
-        gap: 16,
-    },
-    alertText: {
-        flexBasis: 0,
-        flexGrow: 1,
+    selectLabel: {
         color: Colors.darkGrey,
+        marginLeft: 16,
     },
-    buttons: {
-        paddingInline: 16,
-        paddingBlock: 12,
-        paddingBottom: 24,
-        borderTopWidth: 1,
-        borderTopColor: Colors.grey,
-        flexDirection: 'row',
-        gap: 8,
+    selectValue: {
+        paddingVertical: 10,
+        paddingHorizontal: 16,
+        borderRadius: 12,
+        backgroundColor: Colors.grey,
 
-    },
-    button: {
-        flexBasis: 0,
-        flexGrow: 1,
-    },
-
-    bottomSheetContent: {
-        gap: 8,
-    },
-    selectorItem: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        gap: 12,
-    },
-    selectorItemInfo: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        gap: 12,
     }
 });

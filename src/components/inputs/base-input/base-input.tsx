@@ -61,7 +61,6 @@ const BaseInput = forwardRef<BaseInputHandle, BaseInputProps>(
                         ref={innerRef}
                         style={[styles.input, style]}
                         secureTextEntry={hidden}
-                        placeholder={'USDT address'}
                         placeholderTextColor="#999"
                         {...rest}
                     />
