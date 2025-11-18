@@ -4,6 +4,7 @@ import { styles } from './styles'
 import { AppText, IconSymbol } from '@/ui';
 import { Colors } from '@/styles';
 import { BaseButton } from '@/components';
+import { showError, showSuccess } from '@/modules';
 
 type InvitationsScreenLayoutProps = {}
 
@@ -41,7 +42,9 @@ const InvitationsScreenLayout: FC<InvitationsScreenLayoutProps> = () => {
 
                         <View style={styles.buttons}>
                             <BaseButton text={'Invite'} style={styles.button} size={'small'} icon={'person-add'}/>
-                            <BaseButton text={'Claim'} style={styles.button} size={'small'} icon={'attach-money'}/>
+                            <BaseButton text={'Claim'} style={styles.button} size={'small'} icon={'attach-money'} onPress={() => {
+                                showError({ title: 'Sorry', message: 'No Karat to claim' });
+                            }}/>
                         </View>
 
                         <View style={styles.pendingInfo}>

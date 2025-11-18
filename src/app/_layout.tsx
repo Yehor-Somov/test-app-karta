@@ -4,6 +4,7 @@ import { Stack } from 'expo-router';
 import { Colors } from '@/styles';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
+import { Toaster } from '@/modules';
 
 export default function RootLayout() {
 
@@ -35,6 +36,9 @@ export default function RootLayout() {
 
                         <Stack.Screen name={'(invitations)/invitations'} options={{
                             title: 'Invite friends',
+                            headerStyle: {
+                                backgroundColor: Colors.white,
+                            },
                             contentStyle: {
                                 backgroundColor: Colors.white,
                             }
@@ -60,6 +64,8 @@ export default function RootLayout() {
                             title: 'Withdraw',
                         }}/>
                     </Stack>
+
+                    <Toaster/>
                 </React.Fragment>
             </BottomSheetModalProvider>
         </GestureHandlerRootView>
